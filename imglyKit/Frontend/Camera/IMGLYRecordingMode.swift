@@ -42,16 +42,8 @@ import MobileCoreServices
         case .Photo:
             let button = UIButton()
             button.translatesAutoresizingMaskIntoConstraints = false
-            button.setImage(UIImage(named: "LensAperture_ShapeLayer_00000", inBundle: bundle, compatibleWithTraitCollection: nil), forState: .Normal)
-            button.imageView?.animationImages = [UIImage]()
-            button.imageView?.animationRepeatCount = 1
-            button.adjustsImageWhenHighlighted = false
-            
-            for var index = 0; index < 10; index++ {
-                let image = String(format: "LensAperture_ShapeLayer_%05d", index)
-                button.imageView?.animationImages?.append(UIImage(named: image, inBundle: bundle, compatibleWithTraitCollection:nil)!)
-            }
-            
+            button.setImage(UIImage(named: "take-photo-icon", inBundle: bundle, compatibleWithTraitCollection: nil), forState: .Normal)
+
             return button
         case .Video:
             let button = IMGLYVideoRecordButton()

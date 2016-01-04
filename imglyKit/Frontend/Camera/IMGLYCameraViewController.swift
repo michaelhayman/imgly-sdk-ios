@@ -112,7 +112,7 @@ public class IMGLYCameraViewController: UIViewController {
         let bundle = NSBundle(forClass: self.dynamicType)
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "nonePreview", inBundle: bundle, compatibleWithTraitCollection: nil), forState: .Normal)
+        button.setImage(UIImage(named: "open-camera-roll-icon", inBundle: bundle, compatibleWithTraitCollection: nil), forState: .Normal)
         button.imageView?.contentMode = .ScaleAspectFill
         button.layer.cornerRadius = 3
         button.clipsToBounds = true
@@ -141,7 +141,7 @@ public class IMGLYCameraViewController: UIViewController {
         let bundle = NSBundle(forClass: self.dynamicType)
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "show_filter", inBundle: bundle, compatibleWithTraitCollection: nil), forState: .Normal)
+        button.setImage(UIImage(named: "close-photo-picker", inBundle: bundle, compatibleWithTraitCollection: nil), forState: .Normal)
         button.layer.cornerRadius = 3
         button.clipsToBounds = true
         button.addTarget(self, action: "toggleFilters:", forControlEvents: .TouchUpInside)
