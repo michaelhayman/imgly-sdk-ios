@@ -736,32 +736,7 @@ public class IMGLYCameraViewController: UIViewController {
     }
     
     public func toggleFilters(sender: UIButton?) {
-        if let filterSelectionViewConstraint = self.filterSelectionViewConstraint {
-            let animationDuration = NSTimeInterval(0.6)
-            let dampingFactor = CGFloat(0.6)
-            
-            if filterSelectionViewConstraint.constant == 0 {
-                // Expand
-                filterSelectionController.beginAppearanceTransition(true, animated: true)
-                filterSelectionViewConstraint.constant = -1 * CGFloat(FilterSelectionViewHeight)
-                UIView.animateWithDuration(animationDuration, delay: 0, usingSpringWithDamping: dampingFactor, initialSpringVelocity: 0, options: [], animations: {
-                    sender?.transform = CGAffineTransformIdentity
-                    self.view.layoutIfNeeded()
-                    }, completion: { finished in
-                        self.filterSelectionController.endAppearanceTransition()
-                })
-            } else {
-                // Close
-                filterSelectionController.beginAppearanceTransition(false, animated: true)
-                filterSelectionViewConstraint.constant = 0
-                UIView.animateWithDuration(animationDuration, delay: 0, usingSpringWithDamping: dampingFactor, initialSpringVelocity: 0, options: [], animations: {
-                    sender?.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
-                    self.view.layoutIfNeeded()
-                    }, completion: { finished in
-                        self.filterSelectionController.endAppearanceTransition()
-                })
-            }
-        }
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @objc private func changeIntensity(sender: UISlider?) {
