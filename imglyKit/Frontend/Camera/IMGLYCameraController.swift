@@ -302,12 +302,12 @@ public class IMGLYCameraController: NSObject {
     }
     
     private func setupMaskIndicatorLayer() {
-        maskIndicatorLayer.borderColor = UIColor.whiteColor().CGColor
+        maskIndicatorLayer.borderColor = UIColor.clearColor().CGColor
         maskIndicatorLayer.borderWidth = 1
         maskIndicatorLayer.frame.origin = CGPointMake(0, 0)
         maskIndicatorLayer.frame.size = CGSize(width: kIMGLYIndicatorSize, height: kIMGLYIndicatorSize)
         maskIndicatorLayer.hidden = true
-        maskIndicatorLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        maskIndicatorLayer.anchorPoint = CGPoint(x: 0, y: 0)
         previewView.layer.addSublayer(maskIndicatorLayer)
     }
     
@@ -316,7 +316,7 @@ public class IMGLYCameraController: NSObject {
         upperMaskDarkenLayer.frame.origin = CGPointMake(0, 0)
         upperMaskDarkenLayer.frame.size = CGSize(width: kIMGLYIndicatorSize, height: kIMGLYIndicatorSize)
         upperMaskDarkenLayer.hidden = true
-        upperMaskDarkenLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        upperMaskDarkenLayer.anchorPoint = CGPoint(x: 0, y: 0)
         upperMaskDarkenLayer.backgroundColor = UIColor(white: 0.0, alpha: 0.8).CGColor
         previewView.layer.addSublayer(upperMaskDarkenLayer)
     }
@@ -326,7 +326,7 @@ public class IMGLYCameraController: NSObject {
         lowerMaskDarkenLayer.frame.origin = CGPointMake(0, 0)
         lowerMaskDarkenLayer.frame.size = CGSize(width: kIMGLYIndicatorSize, height: kIMGLYIndicatorSize)
         lowerMaskDarkenLayer.hidden = true
-        lowerMaskDarkenLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        lowerMaskDarkenLayer.anchorPoint = CGPoint(x: 0, y: 0)
         lowerMaskDarkenLayer.backgroundColor = UIColor(white: 0.0, alpha: 0.8).CGColor
         previewView.layer.addSublayer(lowerMaskDarkenLayer)
     }
@@ -342,13 +342,12 @@ public class IMGLYCameraController: NSObject {
         let width = newRect.size.height / 2.0
         let height = width
         let top = newRect.origin.x + ((newRect.size.width / 2.0) - width) / 2.0
-        let left = newRect.origin.y / 2.0
         CATransaction.begin()
         CATransaction.setAnimationDuration(0)
-        maskIndicatorLayer.frame = CGRect(x: left, y: top, width: width, height: height).integral
-        upperMaskDarkenLayer.frame = CGRect(x: left, y: 0, width: width, height: top - 1).integral
+        maskIndicatorLayer.frame = CGRect(x: 0, y: top, width: width, height: height).integral
+        upperMaskDarkenLayer.frame = CGRect(x: 0, y: 0, width: width, height: top - 1).integral
         // add extra space to the bottom to avoid a gab due to the lower bar animation
-        lowerMaskDarkenLayer.frame = CGRect(x: left, y: top + height + 1, width: width, height: top * 2).integral
+        lowerMaskDarkenLayer.frame = CGRect(x: 0, y: top + height + 1, width: width, height: top * 2).integral
         CATransaction.commit()
     }
     
