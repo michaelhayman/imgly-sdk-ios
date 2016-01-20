@@ -630,18 +630,7 @@ public class IMGLYCameraViewController: UIViewController {
         }
     }
     
-    public func setLastImageFromRollAsPreview() {
-        let fetchOptions = PHFetchOptions()
-        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
-        
-        let fetchResult = PHAsset.fetchAssetsWithMediaType(.Image, options: fetchOptions)
-        if fetchResult.lastObject != nil {
-            let lastAsset: PHAsset = fetchResult.lastObject as! PHAsset
-            PHImageManager.defaultManager().requestImageForAsset(lastAsset, targetSize: CGSize(width: BottomControlSize.width * 2, height: BottomControlSize.height * 2), contentMode: PHImageContentMode.AspectFill, options: PHImageRequestOptions()) { (result, info) -> Void in
-                self.cameraRollButton.setImage(result, forState: UIControlState.Normal)
-            }
-        }
-    }
+    public func setLastImageFromRollAsPreview() { }
     
     // MARK: - Targets
     
