@@ -82,6 +82,7 @@ public class IMGLYZoomingImageView: UIScrollView {
     // MARK: - Actions
     
     @objc private func doubleTapped(gestureRecognizer: UITapGestureRecognizer) {
+        /*
         let location = gestureRecognizer.locationInView(imageView)
         
         if zoomScale > minimumZoomScale {
@@ -89,6 +90,7 @@ public class IMGLYZoomingImageView: UIScrollView {
         } else {
             zoomToRect(CGRect(x: location.x, y: location.y, width: 1, height: 1), animated: true)
         }
+        */
     }
 }
 
