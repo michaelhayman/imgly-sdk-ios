@@ -100,9 +100,13 @@ extension IMGLYZoomingImageView: UIScrollViewDelegate {
     }
     
     public func scrollViewDidZoom(scrollView: UIScrollView) {
-        let offsetX = max((bounds.size.width - contentSize.width) * 0.5, 0)
-        let offsetY = max((bounds.size.height - contentSize.height) * 0.5, 0)
-        
-        imageView.center = CGPoint(x: contentSize.width * 0.5 + offsetX, y: contentSize.height * 0.5 + offsetY)
+        if (contentSize.height > contentSize.width) {
+            let offsetX = max((bounds.size.width - contentSize.width) * 0.5, 0)
+            let offsetY = max((bounds.size.height - contentSize.height) * 0.5, 0)
+
+            imageView.center = CGPoint(x: contentSize.width * 0.5 + offsetX, y: contentSize.height * 0.5 + offsetY)
+        }
+
+        scrollView.scrollRectToVisible(imageView.frame, animated: false)
     }
 }
