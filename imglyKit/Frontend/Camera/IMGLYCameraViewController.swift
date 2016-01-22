@@ -71,6 +71,18 @@ public class IMGLYCameraViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
         }()
+
+    public private(set) lazy var photoPromptLabelView: UILabel = {
+        let view = UILabel()
+        view.textColor = UIColor.whiteColor()
+        view.font = UIFont(name: "MuseoSansRounded-700", size: 16)
+        view.text = "Take a photo of your meal:"
+        view.textAlignment = .Center
+        view.translatesAutoresizingMaskIntoConstraints = false
+        // view.backgroundColor = UIColor(white: 0.0, alpha: 0.8)//.CGColor
+        view.backgroundColor = UIColor.clearColor()//.CGColor
+        return view
+        }()
     
     public private(set) lazy var cameraPreviewContainer: UIView = {
         let view = UIView()
@@ -336,6 +348,7 @@ public class IMGLYCameraViewController: UIViewController {
         view.addSubview(backgroundContainerView)
         backgroundContainerView.addSubview(cameraPreviewContainer)
         view.addSubview(topControlsView)
+        view.addSubview(photoPromptLabelView)
         view.addSubview(bottomControlsView)
         
         addChildViewController(filterSelectionController)
@@ -361,6 +374,7 @@ public class IMGLYCameraViewController: UIViewController {
             "backgroundContainerView" : backgroundContainerView,
             "topLayoutGuide" : topLayoutGuide,
             "topControlsView" : topControlsView,
+            "photoPromptLabelView" : photoPromptLabelView,
             "cameraPreviewContainer" : cameraPreviewContainer,
             "bottomControlsView" : bottomControlsView,
             "filterSelectionView" : filterSelectionController.view,
@@ -374,6 +388,7 @@ public class IMGLYCameraViewController: UIViewController {
         
         let metrics: [String : AnyObject] = [
             "topControlsViewHeight" : 44,
+            "photoPromptLabelViewHeight" : 50,
             "filterSelectionViewHeight" : FilterSelectionViewHeight,
             "topControlMargin" : 20,
             "topControlMinWidth" : 44,
@@ -390,12 +405,14 @@ public class IMGLYCameraViewController: UIViewController {
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundContainerView]|", options: [], metrics: nil, views: views))
         
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[topControlsView]|", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[photoPromptLabelView]|", options: [], metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[cameraPreviewContainer]|", options: [], metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[bottomControlsView]|", options: [], metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[filterSelectionView]|", options: [], metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-(==filterIntensitySliderLeftRightMargin)-[filterIntensitySlider]-(==filterIntensitySliderLeftRightMargin)-|", options: [], metrics: metrics, views: views))
 
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[topLayoutGuide][topControlsView(==topControlsViewHeight)]", options: [], metrics: metrics, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[topControlsView][photoPromptLabelView(==photoPromptLabelViewHeight)]", options: [], metrics: metrics, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[bottomControlsView][filterSelectionView(==filterSelectionViewHeight)]", options: [], metrics: metrics, views: views))
         view.addConstraint(NSLayoutConstraint(item: filterIntensitySlider, attribute: .Bottom, relatedBy: .Equal, toItem: bottomControlsView, attribute: .Top, multiplier: 1, constant: -20))
         
