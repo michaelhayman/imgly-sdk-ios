@@ -193,10 +193,10 @@ public class IMGLYMainEditorViewController: IMGLYEditorViewController {
     private func updatePreviewImage() {
         if let lowResolutionImage = self.lowResolutionImage {
             updating = true
-            dispatch_async(PhotoProcessorQueue) {
+            dispatch_async(PhotoProcessorQueue) { [unowned self] in
                 let processedImage = IMGLYPhotoProcessor.processWithUIImage(lowResolutionImage, filters: self.fixedFilterStack.activeFilters)
-                
-                dispatch_async(dispatch_get_main_queue()) {
+            
+                dispatch_async(dispatch_get_main_queue()) { [unowned self] in
                     self.previewImageView.image = processedImage
                     self.updating = false
                 }
@@ -207,13 +207,18 @@ public class IMGLYMainEditorViewController: IMGLYEditorViewController {
     // MARK: - EditorViewController
     
     override public func tappedDone(sender: UIBarButtonItem?) {
+        weak var weakSelf = self
+        weak var highResImage = highResolutionImage
+
         if let completionBlock = completionBlock {
-            highResolutionImage = highResolutionImage?.imgly_normalizedImage
+            let strongSelf = weakSelf
+  
+            strongSelf!.highResolutionImage = highResImage?.imgly_normalizedImage
             var filteredHighResolutionImage: UIImage?
             
-            if let highResolutionImage = self.highResolutionImage {
+            if let highResolutionImage = strongSelf!.highResolutionImage {
                 sender?.enabled = false
-                dispatch_async(PhotoProcessorQueue) {
+                dispatch_async(PhotoProcessorQueue) { [unowned self] in
                     filteredHighResolutionImage = IMGLYPhotoProcessor.processWithUIImage(highResolutionImage, filters: self.fixedFilterStack.activeFilters)
                     
                     dispatch_async(dispatch_get_main_queue()) {
