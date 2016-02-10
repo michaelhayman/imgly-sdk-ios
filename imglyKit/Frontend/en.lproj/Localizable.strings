@@ -17,7 +17,7 @@
 "camera-view-controller.error-saving-video.cancel" = "Cancel";
 
 // Main Editor
-"main-editor.title" = "Editor";
+"main-editor.title" = "Edit your photo";
 "main-editor.button.magic" = "Magic";
 "main-editor.button.filter" = "Filter";
 "main-editor.button.stickers" = "Stickers";
