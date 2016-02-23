@@ -94,7 +94,6 @@ public class IMGLYCropEditorViewController: IMGLYSubEditorViewController {
         let bundle = NSBundle(forClass: self.dynamicType)
         navigationItem.title = NSLocalizedString("crop-editor.title", tableName: nil, bundle: bundle, value: "", comment: "")
         
-        configureButtons()
         configureCropRect()
         selectedButton = freeRatioButton
     }
