@@ -78,7 +78,7 @@ public class IMGLYCropEditorViewController: IMGLYSubEditorViewController {
         }()
     
     private let cropRectComponent = IMGLYInstanceFactory.cropRectComponent()
-    public var selectionMode = IMGLYSelectionMode.Free
+    public var selectionMode = IMGLYSelectionMode.OneToOne
     public var selectionRatio = CGFloat(1.0)
     private var cropRectLeftBound = CGFloat(0)
     private var cropRectRightBound = CGFloat(0)
